@@ -1,0 +1,294 @@
+<div class="row">
+    <div class="col-12 d-flex justify-content-left">
+             <h3>Nueva Incidencia</h3>
+    </div>
+ </div> <!--fin Row titulo-->
+
+<div class="row">
+
+ <div class="col-12 col-sm-12 col-xl-12 mt-3">
+
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#itop-tab-pane" type="button" role="tab" aria-controls="itop-tab-pane" aria-selected="true">ITOP</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#escuela-tab-pane" type="button" role="tab" aria-controls="escuela-tab-pane" aria-selected="false">ESCUELA</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#conectCBA-tab-pane" type="button" role="tab" aria-controls="conectCBA-tab-pane" aria-selected="false">C. PROVINCIA</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#conectCBA2-tab-pane" type="button" role="tab" aria-controls="conectCBA2-tab-pane" aria-selected="false">C. PROVINCIA</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#conectNacion-tab-pane" type="button" role="tab" aria-controls="conectNacion-tab-pane" aria-selected="false">C. NACIÓN</button>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="itop-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+          <div class="card mt-2">
+
+            <div class="card-body ">
+        
+                    <div class="row">
+                      <div class="col-12 col-xl-6">
+                          <div class="input-group mb-3">
+                              <span class="input-group-text" id="basic-addon1">Nro ticket</span>
+                              <input id="inputTkt" type="text" class="form-control" placeholder="Nro ticket" aria-label="Nro ticket" aria-describedby="basic-addon1" disabled>
+                            </div>
+                      </div>
+                      <div class="col-12 col-xl-6">
+                          <div class="input-group mb-3">
+                              <span class="input-group-text" id="basic-addon1">Titulo</span>
+                              <input type="text" id="inputTitulo" class="form-control" placeholder="Titulo" aria-label="Titulo" aria-describedby="basic-addon1" disabled>
+                            </div>
+                      </div>
+                      <div class="col-12 col-xl-6">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Tipo</span>
+                            <input id="inputTipo" type="text" class="form-control" placeholder="tipo" aria-label="tipo" aria-describedby="basic-addon1" disabled>
+                          </div>
+                    </div>
+                    <div class="col-12 col-xl-6">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Subservicio</span>
+                            <input type="text" id="inputSub" class="form-control" placeholder="Subservicio" aria-label="Subservicio" aria-describedby="basic-addon1" disabled>
+                          </div>
+                    </div>
+                    <div class="col-12 col-xl-6">
+                      <div class="input-group mb-3">
+                          <span class="input-group-text" id="basic-addon1">N° de incidencia</span>
+                          <input type="text" id="NIncidencia" class="form-control" placeholder="N Incidencia" aria-label="Subservicio" aria-describedby="basic-addon1" disabled>
+                        </div>
+                  </div>
+                      <div class="col-12">
+                        <div class="input-group">
+                          <span class="input-group-text">Descripción</span>
+                          <div id="areaDescripcion" class="form-control" aria-label="Descripción" rows="16" disabled></div>
+                        </div>
+                      </div>
+                  
+        
+                  </div>
+        
+            </div>
+            <div class="card-footer text-muted" id="ultimaActualizacion"></div>
+        </div>
+
+        </div>
+        <div class="tab-pane fade" id="escuela-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+
+          <div class="card text-center mt-2">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-xl-6">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">CUE</span>
+                            <input id="inputCUE" type="text" class="form-control " placeholder="N°" aria-label="CUE" aria-describedby="basic-addon1" disabled>
+                            <button class="btn btn-outline-secondary hide" type="button" id="btnCUE" onclick="buscarCUE()"><span class="material-icons mt-2">search</span></button>
+                          </div>
+                    </div>
+                    <div class="col-12 col-xl-6">
+                      <div class="input-group mb-3">
+                          <span class="input-group-text" id="lblNIVEL">Nivel</span>
+                          <input type="text" id="inputNIVEL" class="form-control" placeholder="NIVEL" aria-label="NIVEL" aria-describedby="basic-addon1" disabled>
+                        </div>
+                  </div>
+                  <div class="col-12 col-xl-6">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="lblCODIGO_EMPRESA">Código de empresa</span>
+                        <input id="inputCODIGO_EMPRESA" type="text" class="form-control" placeholder="CODIGO_EMPRESA" aria-label="CODIGO_EMPRESA" aria-describedby="basic-addon1" disabled>
+                      </div>
+                </div>
+                    <div class="col-12 col-xl-6">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="lblNOMBRE">Nombre</span>
+                            <input type="text" id="inputNOMBRE" class="form-control" placeholder="NOMBRE" aria-label="NOMBRE" aria-describedby="basic-addon1" disabled>
+                          </div>
+                    </div>
+                    <div class="col-12 col-xl-6">
+                      <div class="input-group mb-3">
+                          <span class="input-group-text" id="lblDEPARTARMENTO">Departamento</span>
+                          <input id="inputDEPARTAMENTO" type="text" class="form-control" placeholder="DEPARTAMENTO" aria-label="DEPARTAMENTO" aria-describedby="basic-addon1" disabled>
+                        </div>
+                  </div>
+                      <div class="col-12 col-xl-6">
+                          <div class="input-group mb-3">
+                              <span class="input-group-text" id="lblLOCALIDAD">Localidad</span>
+                              <input type="text" id="inputLOCALIDAD" class="form-control" placeholder="LOCALIDAD" aria-label="LOCALIDAD" aria-describedby="basic-addon1" disabled>
+                            </div>
+                      </div>
+                </div>  
+        
+        
+            </div>
+          </div>
+
+        </div>
+        <div class="tab-pane fade" id="conectCBA-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+
+          <div class="card text-center mt-2">
+            <div class="card-body">
+        
+              <div class="row">
+                  <div class="col-12 col-xl-6">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="lblTecnologia">Tecnologia</span>
+                        <input type="text" id="inputTecnologia" class="form-control" placeholder="Tecnologia" aria-label="Tecnologia" aria-describedby="basic-addon1" disabled>
+                      </div>
+                  </div>
+                
+                  <div class="col-12 col-xl-6">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="lblEstado">Estado</span>
+                        <input type="text" id="inputEstado" class="form-control" placeholder="Estado" aria-label="Estado" aria-describedby="basic-addon1" disabled>
+                      </div>
+                  </div>
+        
+                  <div class="col-12 col-xl-6">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="lblCalidad">Calidad</span>
+                        <input type="text" id="inputCalidad" class="form-control" placeholder="Calidad" aria-label="Calidad" aria-describedby="basic-addon1" disabled>
+                      </div>
+                  </div>
+        
+                  <div class="col-12 col-xl-6">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="lblSubida">Subida</span>
+                        <input type="text" id="inputSubida" class="form-control" placeholder="Subida" aria-label="Subida" aria-describedby="basic-addon1" disabled>
+                      </div>
+                  </div>
+        
+                  <div class="col-12 col-xl-6">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="lblBajada">Bajada</span>
+                        <input type="text" id="inputBajada" class="form-control" placeholder="Bajada" aria-label="Bajada" aria-describedby="basic-addon1" disabled>
+                      </div>
+                  </div>
+                  <div class="col-12 col-xl-6">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="lblPagador">Pagador</span>
+                        <input type="text" id="inputPagador" class="form-control" placeholder="Pagador" aria-label="Pagador" aria-describedby="basic-addon1" disabled>
+                      </div>
+                  </div>
+                  <div class="col-12 col-xl-6">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="lblProyecto">Proyecto</span>
+                        <input type="text" id="inputProyecto" class="form-control" placeholder="Proyecto" aria-label="Proyecto" aria-describedby="basic-addon1" disabled>
+                      </div>
+                  </div>
+        
+              </div>  
+        
+        
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="conectNacion-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0">
+
+          <div class="card text-center mt-2">
+            <div class="card-body">
+        
+              <div class="row">
+        
+                <div class="col-12 col-xl-6">
+                  <div class="input-group mb-3">
+                      <span class="input-group-text" id="lblPredio">Predio</span>
+                      <input type="text" id="inputPredio" class="form-control" placeholder="Predio" aria-label="Predio" aria-describedby="basic-addon1" disabled>
+                    </div>
+                </div>
+        
+                  <div class="col-12 col-xl-6">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="lblProveedor">Proveedor Internet</span>
+                        <input type="text" id="inputProveedor" class="form-control" placeholder="Proveedor Internet" aria-label="Proveedor" aria-describedby="basic-addon1" disabled>
+                      </div>
+                  </div>
+        
+                  <div class="col-12 col-xl-6">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="lblPiso">Proveedor Piso</span>
+                        <input type="text" id="inputPiso" class="form-control" placeholder="Proveedor Piso" aria-label="Piso" aria-describedby="basic-addon1" disabled>
+                      </div>
+                  </div>
+                
+              </div>  
+            </div>
+          </div>
+          <div class="tab-pane fade" id="conectNacion2-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0">
+            <div class="card text-center mt-2">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-12 col-xl-6">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="lblPredio">Predio</span>
+                        <input type="text" id="inputPredio" class="form-control" placeholder="Predio" aria-label="Predio" aria-describedby="basic-addon1" disabled>
+                      </div>
+                  </div>
+          
+                    <div class="col-12 col-xl-6">
+                      <div class="input-group mb-3">
+                          <span class="input-group-text" id="lblProveedor">Proveedor Internet</span>
+                          <input type="text" id="inputProveedor" class="form-control" placeholder="Proveedor Internet" aria-label="Proveedor" aria-describedby="basic-addon1" disabled>
+                        </div>
+                    </div>
+          
+                    <div class="col-12 col-xl-6">
+                      <div class="input-group mb-3">
+                          <span class="input-group-text" id="lblPiso">Proveedor Piso</span>
+                          <input type="text" id="inputPiso" class="form-control" placeholder="Proveedor Piso" aria-label="Piso" aria-describedby="basic-addon1" disabled>
+                        </div>
+                    </div>
+                  
+                </div>  
+          
+          
+              </div>
+            </div>
+  
+
+        </div>
+      </div>
+
+</div>
+
+  <div class="col-12 col-sm-12 col-xl-12 mt-3" id="formCarga">
+    <div class="card text-center">
+      <div class="card-header">
+          <h5 class="card-title">Carga Incidencia</h5>
+      </div>
+      <div class="card-body">
+          <div class="row">
+              <div class="col-12 col-sm-12 col-xl-12 mt-3">
+                <select id="selectCategoria" onchange="cargarProveedor(this.value)" class="form-select mb-3" aria-label="Default select example">
+
+                </select>
+                <select id="selectProveedor" class="form-select mb-3" aria-label="Default select example">
+
+                </select>
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="inputNReclamo" placeholder="N°">
+                    <label for="inputNReclamo">Nro Reclamo</label>
+                  </div>
+                  <div class="form-floating">
+                    <div class="input-group">
+                      <span class="input-group-text">Descripción</span>
+                      <textarea id="areaDIncidencia" class="form-control" aria-label="Descripción" rows="16" ></textarea>
+                    </div>
+                  </div>
+                  <select id="selectEstado" class="form-select mb-3 mt-3" aria-label="Default select example">
+
+                  </select>
+                  <div class="d-grid gap-2 col-12 mx-auto mt-2">
+                    <button type="button" class="btn btn-outline-success"  onclick="cargarIncidencia()">Cargar</button>
+                  </div>
+             </div> 
+         </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<script src="js/login.js"></script>
