@@ -7,7 +7,7 @@ $(window).ready(function () {
     // })
     let Rta
 async function Logeado(){
-        await fetch("../controller/contrologin.php",)
+        await fetch("./controller/contrologin.php",)
             .then(res => res.json())
             .then(datacaca => Rta=datacaca)
  //   .then(console.log(data+"CC"))

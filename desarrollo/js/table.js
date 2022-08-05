@@ -156,7 +156,7 @@ function botontocado() {
     var action = 'Searchincidencia';
 
     $.ajax({
-        url: '../controller/categorias.php',
+        url: './controller/categorias.php',
         type: "POST",
         async: true,
         data: { action: action, categorias: datotabla },
