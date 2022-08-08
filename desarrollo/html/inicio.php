@@ -1,5 +1,7 @@
 <?php
 include("../controller/categorias.php");
+include("../controller/ctrlmodal.php");
+
 session_start();
 if (isset($_SESSION['nombredeluser'])) {
 
@@ -176,6 +178,7 @@ $fechastringhoy = $fechaactual->format('d-m-Y'); ?>
                         <th scope="col-2">Fecha de solicit</th>
                         <th scope="col-2">Estado</th>
                         <th scope="col-2">Dias de Gestion</th>
+                        <th scope="col-2">Ver</th>
                     </small>
                 </tr>
             </thead>
@@ -184,13 +187,13 @@ $fechastringhoy = $fechaactual->format('d-m-Y'); ?>
                     <tr <?php
                         $datopasado =  new DateTime($sit['fecha_mod']);
                         $diff = date_diff($datopasado, $fechaactual);
-                        if ($diff->days > 20) {
+                        if ($diff->days > 19) {
                             $bgcolor = "#ff3f3f";
                         }
                         if ($diff->days < 10) {
                             $bgcolor = "#90ee90";
                         }
-                        if ($diff->days > 10 && $diff->days < 20) {
+                        if ($diff->days > 9 && $diff->days < 20) {
                             $bgcolor = "#ffffe0";
                         }    ?>>
 
@@ -203,21 +206,20 @@ $fechastringhoy = $fechaactual->format('d-m-Y'); ?>
                         <td style="background-color:<?= $bgcolor ?>;"><?= $sit['descripcion']; ?></td>
                         <td style="background-color:<?= $bgcolor ?>;"><?php $diff = date_diff($datopasado, $fechaactual);
                                                                         echo  $diff->days; ?></td>
-
+                        <td style="background-color:<?= $bgcolor ?>;">
+                            <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#modal_casos_inc" onclick="obteneridincidencia(<?= $sit['incidencia_id']; ?>)"><i class="fa fa-eye"></i></button>
+                        </td>
                     </tr>
-
-
-
                 <?php endforeach; ?>
             </tbody>
 
         </table>
 
     </div>
-
 </div>
 
-</div>
+<?php include('modalform.php'); ?>
+
 
 
 <!--fin Row contendor acciones->
