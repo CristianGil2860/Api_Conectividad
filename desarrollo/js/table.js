@@ -5,7 +5,7 @@ function getIndex(X) {
 
 
     var indice = X.rowIndex;
-   
+
     var rows = document.getElementsByTagName('tr');
 
     document.getElementById('index').textContent = X.rowIndex;
@@ -77,7 +77,7 @@ function getindice(X) {
             $('#nvovinc').addClass('selected-row');
             botontocado()
             break;
-          
+
         case 1:
             var categorias = 1;
             document.getElementById('salida').textContent = categorias;
@@ -156,6 +156,7 @@ function botontocado() {
     var action = 'Searchincidencia';
 
     $.ajax({
+        // dataType : "json",
         url: './controller/categorias.php',
         type: "POST",
         async: true,
@@ -167,15 +168,12 @@ function botontocado() {
         },
 
         success: function (response) {
-            // mostrardatos(JSON.parse(response));
 
             console.log(response);
-            // var info = JSON.parse(response);
-            // window.alert(info);
-            // var tbl = document.getElementById('tabladatos');
+            //  var info = JSON.parse(response);
 
 
-            $("#container").html(response)
+            $("#container").html(response);
             // myModal.toggle();
             // myModal.hide();
 
@@ -190,27 +188,45 @@ function botontocado() {
     });
 
 }
-// //coordinacion
-// function getindice(X) {
-//     var indice = X.rowIndex;
 
-//     var categorias;
+async function obteneridincidencia(incidencia) {
+    var incidencias = incidencia;
 
-//     document.getElementById('index').textContent = X.rowIndex;
-//     switch (indice) {
-//         case 0:
-//             categorias = 0;
-//             document.getElementById('salida').textContent = categorias;
-//             break;
+    $.ajax({
+        // dataType: "json",
+        url: './controller/ctrlmodal.php',
+        type: "POST",
+        async: true,
+        data: { Idinc: incidencias },
+        // contentType: "application/json",
+        beforeSend: function () {
 
-//         case 1:
-//             categorias = 1;
-//             document.getElementById('salida').textContent = categorias;
-//             break;
-//         case 2:
-//             categorias = 2;
-//             document.getElementById('salida').textContent = categorias;
-//             break;
+        },
+
+        success: function (respuesta) {
+            //aca recibe una respuesta completa con html 
+            console.log(respuesta);
+            //paso a cadena y extraigo el tramo del array
+            const cadena = respuesta.toString();
+            const indice = cadena.indexOf("<");
+            const extr = cadena.substring(0, indice);
+           //extraigo caracteres inecesarios y limpio salida
+            str1 = extr.replaceAll(/[{}""]/g, '');
+            str2 = str1.replaceAll('[', '');
+            str3 = str2.replaceAll(']', '');
+            //envio al textarea del modal.php
+            $("#descripcion").val(str3);
+
+        },
+        error: function (error) {
+            $("#container").html(respuesta);
+        }
+
+    });
+
+}
+
+
 
 
 
