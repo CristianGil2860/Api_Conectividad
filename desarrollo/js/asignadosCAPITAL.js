@@ -279,7 +279,7 @@ function cargarTicket(rta,incidencias){
                 var EstadoInc = document.getElementById('inputEstadoInc');
                 var inputInc = document.getElementById('NIncidencia');
                inputInc.value = INC.id ;
-               console.log(INC.categoria.descripcion)
+               //console.log(INC.descripcion)
                inputTipoInc.value = INC.categoria.descripcion;
                descripcionInc.value = INC.descripcion;
                var Lmovimiento=INC.movimientos.length;
