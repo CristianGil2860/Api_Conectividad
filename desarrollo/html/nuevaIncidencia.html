@@ -16,10 +16,10 @@
           <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#escuela-tab-pane" type="button" role="tab" aria-controls="escuela-tab-pane" aria-selected="false">ESCUELA</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#conectCBA-tab-pane" type="button" role="tab" aria-controls="conectCBA-tab-pane" aria-selected="false">C. PROVINCIA</button>
+          <button class="nav-link" id="Incidencia-tab" data-bs-toggle="tab" data-bs-target="#Inc-tab" type="button" role="tab" aria-controls="Inc-tab" aria-selected="false">INCIDENCIA</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#conectCBA2-tab-pane" type="button" role="tab" aria-controls="conectCBA2-tab-pane" aria-selected="false">C. PROVINCIA</button>
+          <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#conectCBA-tab-pane" type="button" role="tab" aria-controls="conectCBA-tab-pane" aria-selected="false">C. PROVINCIA</button>
         </li>
         <li class="nav-item" role="presentation">
           <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#conectNacion-tab-pane" type="button" role="tab" aria-controls="conectNacion-tab-pane" aria-selected="false">C. NACIÓN</button>
@@ -125,6 +125,38 @@
             </div>
           </div>
 
+        </div>
+        <div class="tab-pane fade" id="Inc-tab" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+          <div class="card text-center mt-2">
+            <div class="card-body">
+                <div class="row">
+                  <div class="col-12 col-xl-6">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon1">CUE:</span>
+                      <input id="inputCUEInc" type="text" class="form-control " placeholder="N°" aria-label="CUE" aria-describedby="basic-addon1" disabled>
+                      <button class="btn btn-outline-secondary hide" type="button" id="btnCUE" onclick="buscarCUE()"><span class="material-icons mt-2">search</span></button>
+                    </div>
+
+                    <div class="col-12 col-xl-6">
+                      <div class="input-group mb-3">
+                          <span class="input-group-text" id="lblEstadoInc">Estado</span>
+                          <input type="text" id="inputEstadoInc" class="form-control" placeholder="Estado" aria-label="Estado" aria-describedby="basic-addon1" disabled>
+                        </div>
+                    </div>
+                    
+                    <div class="col-12 col-xl-6">
+                      <div class="input-group mb-3">
+                          <span class="input-group-text" id="lblEstadoInc">Estado</span>
+                          <input type="text" id="inputDescripcionInc" class="form-control" placeholder="Estado" aria-label="Estado" aria-describedby="basic-addon1" disabled>
+                        </div>
+                    </div>
+
+
+                    
+                  </div>  
+                </div>
+              </div>
+            </div>
         </div>
         <div class="tab-pane fade" id="conectCBA-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
 

@@ -2,6 +2,11 @@
 include("../config/database.php");
 
 include_once("../html/inicio.php");
+
+// AGREGO EL IF PARA QUE SOLO LO EJECUTE SI LE PASO INCIDENCIA Y NO EN LA PRIMERA CARGA
+if(isset($_POST['Idinc']))
+
+{
 $Idinc = isset($_POST['Idinc']) ? $_POST['Idinc'] : "";
 
 $consultsit = $conexionsit->prepare("SELECT date_format(fecha_mod,'%d-%m-%Y')AS fecha,estados.descripcion 
@@ -16,5 +21,5 @@ if (!$modalinci) {
   echo json_encode($modalinci);
 
 }
- 
-  
+} 
+ ?> 

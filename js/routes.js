@@ -203,9 +203,6 @@ const PATHS = {
                             TotalCasos=Casos;
                         }
                         PaginaAct ++;
-                    //    console.log(TotalCasos);
-                      //  console.log("EN while");
-
                     }
                 tablaAsignados(TotalCasos);
 
@@ -216,8 +213,6 @@ const PATHS = {
                 .then(response => response.json())
                 .then(data => tablaAsignados(data))
             }    
-                
-                //.then(data => tablaAsignados(data))
             myModal.toggle()
         }
     },

@@ -263,20 +263,30 @@ function convertFromStringToDate(responseDate) {
 
 function cargarTicket(rta,incidencias){
 
-     let data = rta['data'];
-     let Inc =incidencias.resultados;
-    console.log(Inc);
-     data.forEach(ticket => {
+    let data = rta['data'];
+    let Inc =incidencias.resultados;
+    
+    data.forEach(ticket => {
 
-        // REPITO LA FUNCION DE ARRIBA NO SE COMO QUEDARA - FUNCIONA
-        incidenciaAct=000
-        Inc.forEach(INC =>{
-            if (INC.ticket_itop == ticket.nro_ticket)
-             {
+       // REPITO LA FUNCION DE ARRIBA NO SE COMO QUEDARA - FUNCIONA
+       incidenciaAct=000
+       Inc.forEach(INC =>{
+           if (INC.ticket_itop == ticket.nro_ticket)
+            {
+
+                var descripcionInc = document.getElementById('inputDescripcionInc');
+                var inputTipoInc = document.getElementById('inputTipoInc');
+                var EstadoInc = document.getElementById('inputEstadoInc');
                 var inputInc = document.getElementById('NIncidencia');
-                inputInc.value = INC.id ;
-            } 
-            else {
+               inputInc.value = INC.id ;
+               console.log(INC.categoria.descripcion)
+               inputTipoInc.value = INC.categoria.descripcion;
+               descripcionInc.value = INC.descripcion;
+               var Lmovimiento=INC.movimientos.length;
+               EstadoInc.value = INC.movimientos[Lmovimiento-1].estado.descripcion ;
+               console.log("TKT-INC")
+           } 
+           else {
                var inputInc = document.getElementById('NIncidencia');
                 console.log(INC.ticket_itop + " "+ ticket.nro_ticket )
               }
@@ -315,6 +325,7 @@ function cargarEscuela(respuesta){
 
     var btnCUE = document.getElementById('btnCUE');
     var inputCUE = document.getElementById('inputCUE');
+    var inputCUEInc = document.getElementById('inputCUEInc');
     var inputNIVEL = document.getElementById('inputNIVEL');
     var inputCODIGO_EMPRESA = document.getElementById('inputCODIGO_EMPRESA');
     var inputNOMBRE = document.getElementById('inputNOMBRE');
@@ -357,6 +368,7 @@ function cargarEscuela(respuesta){
         var escuela = respuesta['data'][0]; 
 
             inputCUE.value = escuela.cue.cue;            
+            inputCUEInc.value=escuela.cue.cue;
             inputNIVEL.value = escuela.nivel.nombre;
             inputCODIGO_EMPRESA.value  = escuela.codigo_empresa;           
             inputNOMBRE.value  = escuela.cue.nombre;            
