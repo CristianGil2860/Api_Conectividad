@@ -211,11 +211,39 @@ $fechastringhoy = $fechaactual->format('d-m-Y'); ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
+
             </tbody>
 
         </table>
 
     </div>
+    <nav aria-label="Page navigation example">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
+
+                <p>Mostrando <?php echo $incxpagina ?>de<?php echo $totalincidencias; ?> productos disponibles</p>
+            </div>
+            <div class="columna col-sm-6">
+                <p id="page"><?php echo $pagina ?></p>
+                <p>de<?php echo $paginas ?>Página</p>
+            </div>
+        </div>
+
+
+        <ul class="pagination">
+            <?php if ($pagina > 1) {
+            } ?>
+
+            <?php for ($x = 0; $x < $paginas; $x++) : ?>
+                <li class="page-item "><a class="page-link" id="pagess" onclick="paginador( <?php echo $x + 1 ?>)">
+                        <?php echo $x + 1 ?>
+
+                    </a>
+                </li>
+                <p id="catepagina" style="display: none;"> <?php echo $categorias; ?></p>
+            <?php endfor; ?>
+        </ul>
+    </nav>
 </div>
 
 <?php include('modalform.php'); ?>
