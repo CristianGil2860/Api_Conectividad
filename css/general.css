@@ -64,3 +64,7 @@ tr {
     background-color: rgb(105, 112, 141);font-weight: bold;
     color: #a3c5da !important;
 }
+.columna {
+    display: flex;
+    align-items: center;
+}
