@@ -1,6 +1,17 @@
 
 
 //nacion
+function paginador(x) {
+    var pagina = x;
+    document.getElementById('page').textContent = pagina;
+    console.log(pagina);
+    var pagess = x;
+    page = document.getElementById('pagess').textContent;
+    console.log(pagess);
+    var datotabla = document.getElementById('catepagina').textContent;
+
+    botontocado(datotabla,page);
+}
 function getIndex(X) {
 
 
@@ -9,6 +20,13 @@ function getIndex(X) {
     var rows = document.getElementsByTagName('tr');
 
     document.getElementById('index').textContent = X.rowIndex;
+    var pagina = 0;
+    pagina = document.getElementById('page').textContent;
+    console.log(pagina);
+    // var pagess = 0;
+    // page = document.getElementById('pagess').textContent;
+    // console.log(pagess);
+
     switch (indice) {
 
         case 0:
@@ -151,8 +169,14 @@ function getIndexx(X) {
 function botontocado() {
 
     var datotabla = document.getElementById('salida').textContent;
-
+    if (datotabla == ''){
+      datotabla =  document.getElementById('catepagina').textContent;
+    }
+  
+    var page = document.getElementById('page').textContent;;
+   
     // window.alert(datotabla)
+    console.log(page);
     var action = 'Searchincidencia';
 
     $.ajax({
@@ -160,10 +184,10 @@ function botontocado() {
         url: './controller/categorias.php',
         type: "POST",
         async: true,
-        data: { action: action, categorias: datotabla },
+        data: { action: action, categorias: datotabla, pagina: page },
         beforeSend: function () {
 
-            // myModal.show();
+            //  myModal.show();
 
         },
 
@@ -174,8 +198,8 @@ function botontocado() {
 
 
             $("#container").html(response);
-            // myModal.toggle();
-            // myModal.hide();
+            //  myModal.toggle();
+
 
 
 
@@ -210,7 +234,7 @@ async function obteneridincidencia(incidencia) {
             const cadena = respuesta.toString();
             const indice = cadena.indexOf("<");
             const extr = cadena.substring(0, indice);
-           //extraigo caracteres inecesarios y limpio salida
+            //extraigo caracteres inecesarios y limpio salida
             str1 = extr.replaceAll(/[{}""]/g, '');
             str2 = str1.replaceAll('[', '');
             str3 = str2.replaceAll(']', '');
