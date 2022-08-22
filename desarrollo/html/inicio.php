@@ -221,7 +221,7 @@ $fechastringhoy = $fechaactual->format('d-m-Y'); ?>
         <div class="row">
             <div class="col-xs-12 col-sm-6">
 
-                <p>Mostrando <?php echo $incxpagina ?>de<?php echo $totalincidencias; ?> productos disponibles</p>
+                <p>Mostrando <?php echo $incxpagina ?>de<?php echo $totalincidencias; ?> Incidencias disponibles</p>
             </div>
             <div class="columna col-sm-6">
                 <p id="page"><?php echo $pagina ?></p>
