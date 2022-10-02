@@ -1,5 +1,7 @@
 <?php
-include("categorias.php");
+include("../controller/categorias.php");
+include("../controller/ctrlmodal.php");
+
 session_start();
 if (isset($_SESSION['nombredeluser'])) {
 
@@ -11,7 +13,13 @@ function ConsultarNombre($idEscuela)
 {
     $UrlConsulta = "https://escuelas.sit.net.ar/api/escuela/id/";
     $UrlConsulta = $UrlConsulta . $idEscuela;
-    $RtaJson = file_get_contents($UrlConsulta);
+    $ctx = stream_context_create(array(
+        'http' =>
+        array(
+            'timeout' => 30 
+        )
+    ));
+    $RtaJson = file_get_contents($UrlConsulta, false, $ctx);
     $datos = json_decode($RtaJson, true);
     $NombreEsc = $datos['data'][0]['cue']['nombre'];
     echo $NombreEsc;
@@ -20,7 +28,13 @@ function ConsultarCUE($idEscuela)
 {
     $UrlConsulta = "https://escuelas.sit.net.ar/api/escuela/id/";
     $UrlConsulta = $UrlConsulta . $idEscuela;
-    $RtaJson = file_get_contents($UrlConsulta);
+    $ctx = stream_context_create(array(
+        'http' =>
+        array(
+            'timeout' => 30
+        )
+    ));
+    $RtaJson = file_get_contents($UrlConsulta, false, $ctx);
     $datos = json_decode($RtaJson, true);
     $Cue = $datos['data'][0]['cue']['cue'];
     echo $Cue;
@@ -29,21 +43,20 @@ function ConsultarCUE($idEscuela)
 ?>
 
 <div class="row">
-    <form action="../model/validationlogin.php" method="POST">
+    <form action="../controller/validationlogin.php" method="POST">
         <div class="row">
-            <h6 class="col-9">usuario:<?= $usuarioingreso; ?></h6>
-            <input class="col-3" type="submit" value="cerrar sesion" name="btncerrarsesion">
+            <!-- <h6 id="usuarioinicio">usuario:<?= $usuarioingreso; ?></h6> -->
+            <input style="display: none;" class="col-3" type="submit" value="cerrar sesion" name="btncerrarsesion" id="btncerrarsesion">
         </div>
     </form>
 </div>
 
 <div class="row">
-
     <div class="col-12 d-flex justify-content-left">
-        <h3>Casos abiertos</h3>
+        <h3>Casos Abiertos</h3>
     </div>
-        
-    
+
+
 
 </div>
 <!--fin Row titulo-->
@@ -142,22 +155,22 @@ function ConsultarCUE($idEscuela)
         </div>
     </div>
     <!--fin Row dashboard-->
-    
-        <div class="row mt-4 mb-2" id="contBuscar">
-            <div class="col-2 col-md-1 text-center">
-                <label for="buscarAsignados" class="form-label ">Buscar</label>
-            </div>
-            <div class="col-10 col-md-6">
-                <div class="">
-                    <input class="form-control" id="buscarIncidencia" type="text" placeholder="" onkeyup="doSearch(this)">
-                </div>
-            </div>
-            <div class="col-6">
-                <span id="pBuscar" class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Escriba palabras o numero a buscar">
-                </span>
+
+    <div class="row mt-4 mb-2" id="contBuscar">
+        <div class="col-2 col-md-1 text-center">
+            <label for="buscarAsignados" class="form-label ">Buscar</label>
+        </div>
+        <div class="col-10 col-md-6">
+            <div class="">
+                <input class="form-control" id="buscarIncidencia" type="text" placeholder="" onkeyup="doSearch(this)">
             </div>
         </div>
-        <!-- fin row buscar -->
+        <div class="col-6">
+            <span id="pBuscar" class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Escriba palabras o numero a buscar">
+            </span>
+        </div>
+    </div>
+    <!-- fin row buscar -->
 </div>
 <?php $fechaactual = new DateTime('now');
 $fechastringhoy = $fechaactual->format('d-m-Y'); ?>
@@ -170,37 +183,84 @@ $fechastringhoy = $fechaactual->format('d-m-Y'); ?>
                 <tr>
                     <small>
                         <th scope="col-1">Cue</th>
+                        <th scope="col-2">TKT</th>
+                        <th scope="col-1">INC</th>
                         <th scope="col-2">Nombre</th>
                         <th scope="col-2">Fecha de solicit</th>
                         <th scope="col-2">Estado</th>
                         <th scope="col-2">Dias de Gestion</th>
+                        <th scope="col-2">Ver</th>
                     </small>
                 </tr>
             </thead>
             <tbody>
+                <?php foreach ($tablasit as $sit) : ?>
+                    <tr <?php
+                        $datopasado =  new DateTime($sit['fecha_mod']);
+                        $diff = date_diff($datopasado, $fechaactual);
+                        if ($diff->days > 19) {
+                            $bgcolor = "#ff3f3f";
+                        }
+                        if ($diff->days < 10) {
+                            $bgcolor = "#90ee90";
+                        }
+                        if ($diff->days > 9 && $diff->days < 20) {
+                            $bgcolor = "#ffffe0";
+                        }    ?>>
 
-                <tr>
-
-                    <?php foreach ($tablasit as $sit) : ?>
-                        <td><?= ConsultarCUE($sit['id_escuela']); ?></td>
-                        <td><?= ConsultarNombre($sit['id_escuela']); ?></td>
-                        <td><?php $datopasado =  new DateTime($sit['fecha_mod']);
-                            echo $datobd = $datopasado->format('d-m-Y'); ?></td>
-                        <td><?= $sit['descripcion']; ?></td>
-                        <td><?php $diff = date_diff($datopasado, $fechaactual);;
-                            echo  $diff->days; ?></td>
-
-                </tr>
-            <?php endforeach;  ?>
+                        <td style="background-color:<?= $bgcolor ?>;"><?= ConsultarCUE($sit['id_escuela']); ?></td>
+                        <td style="background-color:<?= $bgcolor ?>;"><?= $sit['ticket_itop']; ?></td>
+                        <td style="background-color:<?= $bgcolor ?>;"><?= $sit['incidencia_id']; ?></td>
+                        <td style="background-color:<?= $bgcolor ?>;"><?= ConsultarNombre($sit['id_escuela']); ?></td>
+                        <td style="background-color:<?= $bgcolor ?>;"><?php $datopasado =  new DateTime($sit['fecha_mod']);
+                                                                        echo $datobd = $datopasado->format('d-m-Y'); ?></td>
+                        <td style="background-color:<?= $bgcolor ?>;"><?= $sit['descripcion']; ?></td>
+                        <td style="background-color:<?= $bgcolor ?>;"><?php $diff = date_diff($datopasado, $fechaactual);
+                                                                        echo  $diff->days; ?></td>
+                        <td style="background-color:<?= $bgcolor ?>;">
+                            <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#modal_casos_inc" onclick="obteneridincidencia(<?= $sit['incidencia_id']; ?>)"><i class="fa fa-eye"></i></button>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
 
             </tbody>
+
         </table>
 
     </div>
+    <nav aria-label="Page navigation example">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
 
+                <p>mostrando&nbsp;<?php echo  $totalincidencias; ?>&nbsp;incidencias disponibles</p>
+            </div>
+            <div class="columna col-sm-6">
+                <p id="page"><?php echo $pagina ?></p>
+                <p>de<?php echo $paginas ?>Página/</p>&nbsp;&nbsp;&nbsp;
+                <p>max x pag:<?php echo  $incxpagina ?></p>
+            </div>
+
+        </div>
+
+
+        <ul class="pagination">
+            <?php if ($pagina > 1) {
+            } ?>
+
+            <?php for ($x = 0; $x < $paginas; $x++) : ?>
+                <li class="page-item "><a class="page-link" id="pagess" onclick="paginador( <?php echo $x + 1 ?>)">
+                        <?php echo $x + 1 ?>
+
+                    </a>
+                </li>
+                <p id="catepagina" style="display: none;"> <?php echo $categorias; ?></p>
+            <?php endfor; ?>
+        </ul>
+    </nav>
 </div>
 
-</div>
+<?php include('modalform.php'); ?>
+
 
 
 <!--fin Row contendor acciones->
