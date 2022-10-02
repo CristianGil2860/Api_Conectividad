@@ -40,10 +40,17 @@ tr {
 
 .nav-link {
     color: grey !important;
+
 }
 
 .nav-link {
     color: #495057 !important;
+}
+
+span.material-icons:hover {
+
+    font-size: 58px;
+    
 }
 
 @media only screen and (max-width: 450px) {
@@ -60,7 +67,40 @@ tr {
         height: auto;
     }
 }
-.selected-row{
-    background-color: rgb(105, 112, 141);font-weight: bold;
+
+.selected-row {
+    background-color: rgb(105, 112, 141);
+    font-weight: bold;
     color: #a3c5da !important;
+}
+
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+}
+
+.columna {
+    display: flex;
+    align-items: center;
+}
+
+
+.logincard{
+    float: right;
+}
+span.input-group-text {
+    /* display: flex;
+    align-content: flex-end; */
+    
+    border-top-left-radius: 0.25;
+    border-top-right-radius: 0.25;
+    border-bottom-right-radius: 0.25;
+    border-bottom-left-radius: 0.25;
 }
