@@ -13,7 +13,13 @@ function ConsultarNombre($idEscuela)
 {
     $UrlConsulta = "https://escuelas.sit.net.ar/api/escuela/id/";
     $UrlConsulta = $UrlConsulta . $idEscuela;
-    $RtaJson = file_get_contents($UrlConsulta);
+    $ctx = stream_context_create(array(
+        'http' =>
+        array(
+            'timeout' => 30 
+        )
+    ));
+    $RtaJson = file_get_contents($UrlConsulta, false, $ctx);
     $datos = json_decode($RtaJson, true);
     $NombreEsc = $datos['data'][0]['cue']['nombre'];
     echo $NombreEsc;
@@ -22,7 +28,13 @@ function ConsultarCUE($idEscuela)
 {
     $UrlConsulta = "https://escuelas.sit.net.ar/api/escuela/id/";
     $UrlConsulta = $UrlConsulta . $idEscuela;
-    $RtaJson = file_get_contents($UrlConsulta);
+    $ctx = stream_context_create(array(
+        'http' =>
+        array(
+            'timeout' => 30
+        )
+    ));
+    $RtaJson = file_get_contents($UrlConsulta, false, $ctx);
     $datos = json_decode($RtaJson, true);
     $Cue = $datos['data'][0]['cue']['cue'];
     echo $Cue;
@@ -33,16 +45,15 @@ function ConsultarCUE($idEscuela)
 <div class="row">
     <form action="../controller/validationlogin.php" method="POST">
         <div class="row">
-            <h6 class="col-9">usuario:<?= $usuarioingreso; ?></h6>
-            <input class="col-3" type="submit" value="cerrar sesion" name="btncerrarsesion">
+            <!-- <h6 id="usuarioinicio">usuario:<?= $usuarioingreso; ?></h6> -->
+            <input style="display: none;" class="col-3" type="submit" value="cerrar sesion" name="btncerrarsesion" id="btncerrarsesion">
         </div>
     </form>
 </div>
 
 <div class="row">
-
     <div class="col-12 d-flex justify-content-left">
-        <h3>Casos abiertos</h3>
+        <h3>Casos Abiertos</h3>
     </div>
 
 
@@ -211,11 +222,41 @@ $fechastringhoy = $fechaactual->format('d-m-Y'); ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
+
             </tbody>
 
         </table>
 
     </div>
+    <nav aria-label="Page navigation example">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
+
+                <p>mostrando&nbsp;<?php echo  $totalincidencias; ?>&nbsp;incidencias disponibles</p>
+            </div>
+            <div class="columna col-sm-6">
+                <p id="page"><?php echo $pagina ?></p>
+                <p>de<?php echo $paginas ?>Página/</p>&nbsp;&nbsp;&nbsp;
+                <p>max x pag:<?php echo  $incxpagina ?></p>
+            </div>
+
+        </div>
+
+
+        <ul class="pagination">
+            <?php if ($pagina > 1) {
+            } ?>
+
+            <?php for ($x = 0; $x < $paginas; $x++) : ?>
+                <li class="page-item "><a class="page-link" id="pagess" onclick="paginador( <?php echo $x + 1 ?>)">
+                        <?php echo $x + 1 ?>
+
+                    </a>
+                </li>
+                <p id="catepagina" style="display: none;"> <?php echo $categorias; ?></p>
+            <?php endfor; ?>
+        </ul>
+    </nav>
 </div>
 
 <?php include('modalform.php'); ?>
