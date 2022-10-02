@@ -52,6 +52,11 @@
             <a class="navbar-brand" href="#" onclick="window.location.reload();" style="z-index:2">
                 <img src="img\Transparente.png" class="d-inline-block align-text-top brand-logo">
             </a>
+            <div class="logincard" id="logincard">
+                <span class="input-group-text"><i class="fa-solid fa-user fa-lg"></i>
+                    <h6 id="usuariologiname"></h6>
+                </span>
+            </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                 aria-controls="offcanvasNavbar">
                 <span class="navbar-toggler-icon "></span>
@@ -87,13 +92,28 @@
                             <a id="navCAPITAL" class="nav-link active" data-bs-dismiss="offcanvas" aria-current="page" href="#"><span class="material-icons">share_location</span></a>
                         </span>     
                     </li>
-                        <li class="nav-item">
-                            <span class="d-inline-block" tabindex="0" data-bs-toggle="popover"
-                                data-bs-trigger="hover focus" data-bs-placement="left" data-bs-content="Escuelas">
-                                <a id="navEscuelas" class="nav-link active" data-bs-dismiss="offcanvas"
-                                    aria-current="page" href="#"><span class="material-icons">manage_search </span></a>
-                            </span>
-                        </li>
+                        
+                    <li class="nav-item">
+                        <span class="d-inline-block" tabindex="0" data-bs-toggle="popover"
+                            data-bs-trigger="hover focus" data-bs-placement="left" data-bs-content="Escuelas">
+                            <a id="navTelefonia" class="nav-link active" data-bs-dismiss="offcanvas"
+                                aria-current="page" href="#"><span class="material-icons">phone</span>telefonia</a>
+                        </span>
+                    </li>
+                    <li class="nav-item">
+                        <span class="d-inline-block" tabindex="0" data-bs-toggle="popover"
+                            data-bs-trigger="hover focus" data-bs-placement="left" data-bs-content="Escuelas">
+                            <a id="navEscuelas" class="nav-link active" data-bs-dismiss="offcanvas"
+                                aria-current="page" href="#"><span class="material-icons">manage_search</span></a>
+                        </span>
+                    </li>
+                    <li class="nav-item">
+                        <span class="d-inline-block" tabindex="0" data-bs-toggle="popover"
+                            data-bs-trigger="hover focus" data-bs-placement="left" data-bs-content="Logout">
+                            <a id="#" class="nav-link active" data-bs-dismiss="offcanvas" aria-current="page"
+                                href="#" onclick="logout()"><span class="material-icons">logout</span>cerrar</a>
+                        </span>
+                    </li>
 
                     </ul>
                 </div>
