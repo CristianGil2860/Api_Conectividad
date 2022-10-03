@@ -22,6 +22,14 @@ const menuINTERIOR = async () => {
 const menuCONTROL = async () => {
     await ROUTER.load('contrologin');
 }
+const menuLOGIN = async () => {
+    await ROUTER.load('inicio');
+}
+
+const menuTELEFONIA = async () => {
+    await ROUTER.load('asignadosTELEFONIA');
+
+}
 const menuAgentes = async () => {
     //await ROUTER.load('agentes');
 
@@ -94,4 +102,5 @@ document.getElementById('navPrincipal').addEventListener('click', menuPrincipal)
 //document.getElementById('navINTERIOR').addEventListener('click', menuCONTROL)
 document.getElementById('navINTERIOR').addEventListener('click', menuINTERIOR)
 document.getElementById('navCAPITAL').addEventListener('click', menuCAPITAL)
+document.getElementById('navTelefonia').addEventListener('click', menuTELEFONIA)
 
