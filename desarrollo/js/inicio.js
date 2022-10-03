@@ -1,6 +1,18 @@
 
 async function cargaTablero(data) {
-
+//aparecer menu y avatarlog si esta logeado, o no
+  var btncerrar = document.getElementById('btncerrarsesion');
+  if (btncerrar !== null) {
+    var avatarlogeado = document.getElementById('usuariologiname');
+    var recuperarlog = JSON.parse(localStorage.getItem('user'));
+    avatarlogeado.innerHTML = recuperarlog;
+    var menuinicio = document.getElementById('Menuboton');
+    menuinicio.style.display = 'block';
+    
+  } else {
+    document.getElementById('logincard').style.display = 'none';
+  }
+ 
   var incidencias = data.resultados
 
   let cantTelecom = document.getElementById('cantTelecom');
