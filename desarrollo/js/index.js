@@ -36,7 +36,22 @@ const menuAgentes = async () => {
 }
 
 
+async function logout() {
+    menuLOGIN();
+    setTimeout(function () {
+        var recuperarlog = JSON.parse(localStorage.getItem('user'));
+        var avatarlogeado = document.getElementById('usuariologiname');
+        // document.getElementById('logincard').removeChild();
+        localStorage.removeItem(recuperarlog);
+        avatarlogeado.innerHTML = "";
+        var btncerrar = document.getElementById('btncerrarsesion');
+        // console.log(btncerrar);
+        btncerrar.click();
+    }, 400);
 
+
+   
+}
 
 
 function doSearch(tabla) {
