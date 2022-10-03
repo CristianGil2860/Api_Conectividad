@@ -1,40 +1,51 @@
-$(window).ready(function () {
-    // $('#formlogin').on('submit', function (e) {
-    //     //para evitar que se recarge la pag
-    //     e.preventDefault();
 
+function enviar() {
+    var nombre_usuario = document.getElementById('nombre_usuario').textContent;
+    var contrasena = document.getElementById('contrasena').textContent;
+    var logeado = document.getElementById('formlogin');
+    var iconologin = document.getElementById('usuariologiname');
+    logeado.addEventListener('submit', function (e) {
+        e.preventDefault();
+        let datos = new FormData(logeado);
 
-    // })
-    let Rta
-async function Logeado(){
-        await fetch("./html/contrologin.php",)
-            .then(res => res.json())
-            .then(datacaca => Rta=datacaca)
- //   .then(console.log(data+"CC"))
-    if (Rta)
-    {
-        document.getElementById("Menu").classList.remove("ocultar");
-        console.log("LOGUEADO")
-    }
-    else
-    {
-        document.getElementById("Menu").classList.add("ocultar");
-        console.log("SIN LOGIN")
-    }
-    }
-    Logeado();
-    let nombre = $('#nombre_usuario').val();
-    let pass = $('#contrasena').val();
+      
+        fetch('./controller/validationlogin.php', {
+            method: 'POST',
+            body: datos,
+           
+        }).then(Response => Response.json())
+            .then(({ data, user }) => {
+             
+                if (data === 1) {
+                
 
-//     $.ajax({
-//         type: form.attr('method'),
-//         url: form.attr('action'),
-//         data: form.serialize(),
-//         beforeSend: function(){
-//             success: function (data){
+                    var usuario = iconologin.innerHTML;
+                    usuario = user;
+                    console.log(usuario);
+                    localStorage.setItem('user', JSON.stringify(usuario));
 
-//             }
+                    console.log(data);
+                    location.href = './';
+                    elementoslogin();
+                    menuinicio.style.display = 'block';
+                    
+                    // var recuperarlog = sessionStorage.getItem('user');
+                    // console.log(recuperarlog);
 
-//         }
-//     });
-});
+                } else if (data === 0) {
+                    document.getElementById('logincard').style.display = 'block';
+                  
+                    iconologin.innerHTML = 'usuario o contraseña incorrecto';
+                    setTimeout(()=>{
+                    console.log(data);
+                    document.getElementById('logincard').style.display = 'none';
+                    iconologin.innerHTML = '';
+                },3000)
+                
+                }
+             
+            })
+    })
+
+}
+
