@@ -49,7 +49,16 @@ const PATHS = {
             myModal.show()
 //            document.getElementById("Menu").classList.remove("ocultar");
             sessionStorage['paginaActual'] = 'inicio';
-
+             //sacar menu en login
+             var avatarlogeado = document.getElementById('usuariologiname');
+             var menuinicio = document.getElementById('Menuboton');
+             if (avatarlogeado.innerHTML == '') {
+                
+                 menuinicio.style.display = 'none';
+             } else {
+                 menuinicio.style.display = 'block';
+             }
+             //fin
             const tag = document.getElementById('inicio')
             if (tag) {
                 const padre = tag.parentNode
@@ -235,7 +244,7 @@ const PATHS = {
             script.id = 'infoConectividad'
             document.body.appendChild(script);
         }
-    }
+    },
     asignadosTELEFONIA: {
         //        template: 'html/contrologin.php',
         
