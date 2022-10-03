@@ -236,6 +236,65 @@ const PATHS = {
             document.body.appendChild(script);
         }
     }
+    asignadosTELEFONIA: {
+        //        template: 'html/contrologin.php',
+        
+        
+        template: 'html/asignadosCAPITAL.html',
+        script: async () => {
+            //            document.getElementById("Menu").classList.remove("ocultar");
+            myModal.show()
+
+            sessionStorage['paginaActual'] = 'asignadosCAPITAL';
+
+            const tag = document.getElementById('asignadosCAPITAL')
+
+            if (tag) {
+                const padre = tag.parentNode
+                padre.removeChild(tag)
+            }
+
+            let script = document.createElement("script");
+            script.src = "js/asignadosCAPITAL.js";
+            script.id = 'asignadosCAPITAL'
+            document.body.appendChild(script);
+
+            const url = 'https://api-itop-sit.herokuapp.com/tickets?id_grupo=172&estado=asignado';
+
+            let TotalCasos = Array();
+
+            await fetch(url)
+                .then(response => response.json())
+                .then(data => TotalCasos = data)
+            if (TotalCasos.total_paginas == 0) {
+                tablaAsignados(TotalCasos);
+
+            }
+            else {
+                let ARRespuesta;
+                let Largo = TotalCasos.length;;
+                ARRespuesta = await LlamarApi(url, TotalCasos.total_paginas)
+
+                console.log("ACA")
+                console.log(ARRespuesta)
+                ARRespuesta.forEach(Rta => {
+                    Largo = TotalCasos.data.length - 1;
+                    let i = 0;
+                    Rta.data.forEach(Casos => {
+                        //                  console.log(Casos);
+                        Largo++;
+                        TotalCasos.data[Largo] = Casos
+
+
+                    })
+                })
+            }
+            //    console.log(TotalCasos)
+            tablaAsignados(TotalCasos);
+            myModal.toggle()
+        }
+    },
+
 
 
 
